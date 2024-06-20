@@ -17,7 +17,7 @@ export default function Home() {
       
         if (confirmed) {
           // User confirmed, proceed with delete
-          axios.delete(`http://localhost:8081/delete/${id}`)
+          axios.delete(`${process.env.REACT_APP_URL}/delete/${id}`)
             .then((res) => {
               //  successful delete messege..
              console.log(res) // Reload the page,
