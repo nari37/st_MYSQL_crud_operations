@@ -27,7 +27,7 @@ export default function Create() {
     const handileSubmit = (event)=>{
         event.preventDefault();
     
-         axios.post(`${process.env.REACT_APP_URL}/student`,values)
+         axios.post(`${process.env.REACT_APP_URL}/student`,values)      
         .then(res=>console.log(res))
         .catch(err => console.log(err))
         navigate('/')
