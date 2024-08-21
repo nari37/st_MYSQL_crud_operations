@@ -1,0 +1,41 @@
+name: Node.js Linting
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run linter
+      run: npm run lint
+      continue-on-error: true
+
+    - name: Save lint results as an artifact
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: lint-results
+        path: |
+          **/eslint-report.json
