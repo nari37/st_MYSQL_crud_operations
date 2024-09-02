@@ -9,7 +9,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors(({ origin: 'https://mongo-crud-eiaj.onrender.com' })));
 app.use(express.json());
 
 const port = process.env.Port || 8000;
